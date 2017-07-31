@@ -523,6 +523,8 @@ class QueryBuilderEngine extends BaseEngine
 
         foreach (explode('.', $relation) as $eachRelation) {
             $model = $lastQuery->getRelation($eachRelation);
+            
+            $this->getQueryBuilder()->select($lastQuery->getQuery()->from . '.*');
 
             if ($model instanceof BelongsToMany) {
                 $pivot   = $model->getTable();
